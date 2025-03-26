@@ -2,44 +2,49 @@ const { test, expect, request } = require('@playwright/test');
 
 class EndToEndPage{
 
-    async addToCart(page){
-        const addToCartBtn = await page.locator('.btn_primary.btn_inventory');  
-        await addToCartBtn.first().click();
-        await addToCartBtn.last().click();
+    constructor(page){
+        this.page=page;
+        this.addToCartBtn=page.locator('.btn_primary.btn_inventory')
+        this.cartBtn=page.locator('#shopping_cart_container');
+        this.checkoutBtn=page.locator('.btn_action.checkout_button');
+        this.subheader=page.locator('.subheader');
+        this.finishBtn=page.locator('.btn_action.cart_button');
+        this.completeHeader=page.locator('.complete-header');
+        this.firstName=page.locator('#first-name');
+        this.lastName=page.locator('#last-name');
+        this.postalCode=page.locator('#postal-code');
+        this.continueBtn=page.locator('.btn_primary.cart_button');
     }
-    async clickOnCartBtn(page){
-        const cartBtn=await page.locator('#shopping_cart_container');
-        await cartBtn.click();
+
+    async addToCart(){
+        await this.addToCartBtn.first().click();    
+        await this.addToCartBtn.last().click();
     }
-    async assertCartPage(page){
-        expect(await page.locator('.subheader').textContent()).toBe('Your Cart');
+    async clickOnCartBtn(){
+        await this.cartBtn.click();
     }
-    async clickOnCheckout(page){
-        const checkoutBtn=await page.locator('.btn_action.checkout_button');
-        await checkoutBtn.click();
+    async assertCartPage(){
+        await(expect(this.subheader).toHaveText('Your Cart'));
     }
-    async assertCheckoutPage(page){
-        expect(await page.locator('.subheader').textContent()).toBe('Checkout: Your Information')
+    async clickOnCheckout(){
+        await this.checkoutBtn.click();
     }
-    async fillCheckoutForm(page){
-        const firstName=await page.locator('#first-name');
-        const lastName=await page.locator('#last-name');
-        const postalCode=await page.locator('#postal-code');
-        const continueBtn= await page.locator('.btn_primary.cart_button')
-        
-        await firstName.fill('Nehu');
-        await lastName.fill('Ro...');
-        await postalCode.fill('4567890');
-        await continueBtn.click();
+    async assertCheckoutPage(){
+        await(expect(this.subheader).toHaveText('Checkout: Your Information'));
     }
-    async assertCheckoutOverviewPage(page){
-        expect(await page.locator('.subheader').textContent()).toBe('Checkout: Overview')
-        const finishBtn= await page.locator('.btn_action.cart_button')
+    async fillCheckoutForm(firstName,lastName,postalCode){
+        await this.firstName.fill(firstName);
+        await this.lastName.fill(lastName);
+        await this.postalCode.fill(postalCode);
+        await this.continueBtn.click();
+    }
+    async assertCheckoutOverviewPage(){
+        await(expect(this.subheader).toHaveText('Checkout: Overview'));
+        const finishBtn= this.page.locator('.btn_action.cart_button')
         await finishBtn.click();
     }
-    async assertCheckoutCompletePage(page){
-        expect(await page.locator('.complete-header').textContent()).toBe('THANK YOU FOR YOUR ORDER');
-
+    async assertCheckoutCompletePage(){
+        await(expect(this.completeHeader).toHaveText('THANK YOU FOR YOUR ORDER'));
     }
 }
 module.exports=EndToEndPage;
