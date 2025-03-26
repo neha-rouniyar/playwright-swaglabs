@@ -1,39 +1,18 @@
 const { test, expect, request } = require('@playwright/test');
 const LoginPage=require('../pages/login.page')
-const {verifyErrorMessage,login}=require('../helpers')
+const EndToEndPage=require('../pages/endToEnd.page')
+const {login}=require('../helpers')
+
 
 test('End to End Testing',async({page})=>{
+    const endToEndPage=new EndToEndPage(page);
     await login(page,'standard_user','secret_sauce');
-    const addToCartBtn = await page.locator('.btn_primary.btn_inventory');  
-    await addToCartBtn.first().click();
-    await addToCartBtn.last().click();
-    // await addToCartBtn2.click();
-
-    const cartBtn=await page.locator('#shopping_cart_container');
-    await cartBtn.click();
-
-    expect(await page.locator('.subheader').textContent()).toBe('Your Cart');
-
-    const checkoutBtn=await page.locator('.btn_action.checkout_button');
-    await checkoutBtn.click();
-
-    expect(await page.locator('.subheader').textContent()).toBe('Checkout: Your Information')
-
-
-    const firstName=await page.locator('#first-name');
-    const lastName=await page.locator('#last-name');
-    const postalCode=await page.locator('#postal-code');
-    const continueBtn= await page.locator('.btn_primary.cart_button')
-
-    await firstName.fill('Nehu');
-    await lastName.fill('Ro...');
-    await postalCode.fill('4567890');
-    await continueBtn.click();
-
-    expect(await page.locator('.subheader').textContent()).toBe('Checkout: Overview')
-    const finishBtn= await page.locator('.btn_action.cart_button')
-    await finishBtn.click();
-
-    expect(await page.locator('.complete-header').textContent()).toBe('THANK YOU FOR YOUR ORDER')
-
+    await endToEndPage.addToCart(page);
+    await endToEndPage.clickOnCartBtn(page);
+    await endToEndPage.assertCartPage(page);
+    await endToEndPage.clickOnCheckout(page);
+    await endToEndPage.assertCheckoutPage(page);
+    await endToEndPage.fillCheckoutForm(page);
+    await endToEndPage.assertCheckoutOverviewPage(page);
+    await endToEndPage.assertCheckoutCompletePage(page);
 })
