@@ -7,6 +7,8 @@ test('End to End Testing',async({page})=>{
     const endToEndPage=new EndToEndPage(page);
     await login(page,'standard_user','secret_sauce');
 
+    await endToEndPage.assertSocialMediaLogo();
+
     await endToEndPage.addToCart();
     await endToEndPage.clickOnCartBtn();
     await endToEndPage.assertCartPage();
