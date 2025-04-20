@@ -1,6 +1,3 @@
-Here is the content you requested in Markdown format:
-
-```markdown
 # SwagLabs Playwright Automation
 
 This repository contains end-to-end automation tests for SwagLabs, a demo e-commerce platform. The tests are built using Playwright, following a Page Object Model (POM) approach to keep the codebase organized and scalable.
@@ -37,7 +34,7 @@ The main focus of this repository is to automate various features of the SwagLab
 ```bash
 git clone https://github.com/neha-rouniyar/playwright-swaglabs.git
 cd playwright-swaglabs
-```
+
 
 ### Install Dependencies:
 ```bash
