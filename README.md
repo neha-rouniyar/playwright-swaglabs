@@ -68,5 +68,3 @@ npx playwright show-report
 
 This project provides a solid foundation for automation testing using Playwright, following best practices like POM. It is suitable for beginners who want to get hands-on experience with test automation for web applications.
 ```
-
-Simply copy and paste this into a file named `README.md`. Let me know if you need any further modifications!
