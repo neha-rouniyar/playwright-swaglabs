@@ -1,10 +1,10 @@
 # SwagLabs Playwright Automation
 
-This repository contains end-to-end automation tests for SwagLabs, a demo e-commerce platform. The tests are built using Playwright, following a Page Object Model (POM) approach to keep the codebase organized and scalable.
+Hey there! 👋 I'm exploring automation in Playwright after working with Cypress, and this repository contains my journey in automating SwagLabs, a demo e-commerce platform. The tests are written using Playwright and follow the Page Object Model (POM) approach to keep things organized and scalable.
 
 ## Project Overview
 
-The main focus of this repository is to automate various features of the SwagLabs website, including:
+In this project, I’m automating key features of the SwagLabs website, including:
 
 - **Cart Operations**: Adding and removing items to/from the cart.
 - **Product Sorting**: Sorting items by name (Z-A) and price (low to high, high to low).
@@ -12,21 +12,21 @@ The main focus of this repository is to automate various features of the SwagLab
 
 ## Testing Approach
 
-- **End-to-End Testing**: The tests cover the entire process from logging in, adding products to the cart, performing product sorting, and validating the checkout page.
-- **Page Object Model (POM)**: The code is organized using POM, where each page of the application (e.g., Login, Cart, Checkout) is represented by a separate class. This allows for better code reusability and maintainability.
+- **End-to-End Testing**: The tests cover the entire flow—logging in, adding products to the cart, sorting items, and checking out.
+- **Page Object Model (POM)**: Each page (e.g., Login, Cart, Checkout) has its own class, making the code reusable and maintainable.
 
 ## Features Tested
 
-- **Login**: Testing valid login with valid user credentials.
-- **Add to Cart**: Adding products to the cart and verifying cart count.
-- **Remove from Cart**: Removing products and verifying cart count decreases.
-- **Product Sorting**: Testing sorting functionality, including Z-A and price sorting.
-- **Checkout Overview**: Verifying item totals, tax, and the final total during checkout.
+- **Login**: Valid login with correct user credentials.
+- **Add to Cart**: Add products to the cart and check the cart count.
+- **Remove from Cart**: Remove items and verify the cart count decreases.
+- **Product Sorting**: Sorting by Z-A and price.
+- **Checkout Overview**: Verifying item totals, tax, and the final total at checkout.
 
 ## Technologies Used
 
-- **Playwright**: A Node.js library for browser automation.
-- **Page Object Model (POM)**: A design pattern to organize tests and interact with the web application in a structured way.
+- **Playwright**: The library used for browser automation.
+- **Page Object Model (POM)**: A design pattern that keeps things clean and maintainable.
 
 ## How to Use
 
@@ -34,6 +34,7 @@ The main focus of this repository is to automate various features of the SwagLab
 ```bash
 git clone https://github.com/neha-rouniyar/playwright-swaglabs.git
 cd playwright-swaglabs
+
 
 
 ### Install Dependencies:
